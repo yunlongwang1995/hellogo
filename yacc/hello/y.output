@@ -1,0 +1,41 @@
+
+state 0
+	$accept: .expression $end 
+
+	HELLO  shift 2
+	HI  shift 3
+	.  error
+
+	expression  goto 1
+
+state 1
+	$accept:  expression.$end 
+
+	$end  accept
+	.  error
+
+
+state 2
+	expression:  HELLO.    (1)
+
+	.  reduce 1 (src line 21)
+
+
+state 3
+	expression:  HI.    (2)
+
+	.  reduce 2 (src line 23)
+
+
+5 terminals, 2 nonterminals
+3 grammar rules, 4/16000 states
+0 shift/reduce, 0 reduce/reduce conflicts reported
+51 working sets used
+memory: parser 0/240000
+0 extra closures
+2 shift entries, 1 exceptions
+1 goto entries
+0 entries saved by goto default
+Optimizer space used: output 3/240000
+3 table entries, 0 zero
+maximum spread: 5, maximum offset: 4
