@@ -17,13 +17,25 @@ func TestSlice(t *testing.T) {
 }
 
 type School struct {
-	room []int
+	room    []int
+	teacher *Teacher
+}
+
+type Teacher struct {
+	Age int
+}
+
+func (s School) ChangeName() {
+	if s.teacher != nil {
+		s.teacher.Age = 18
+	}
 }
 
 func (s School) SetRoom1(rooms []int) {
-	fmt.Printf("%p\n", &s)
+	fmt.Printf("%p\n", s.room)
 	rooms = append(rooms, 3)
 	s.room = rooms
+	s.room = append(s.room, 99)
 }
 
 func (s School) GetRoom1() []int {
@@ -46,10 +58,16 @@ func (s *School) GetRoom2() []int {
 	return nil
 }
 
+func TestStructPtr(t *testing.T) {
+	s := School{teacher: &Teacher{Age: 12}}
+	s.ChangeName()
+	fmt.Println(s.teacher.Age)
+}
+
 func TestInputSlice1(t *testing.T) {
-	s := School{}
+	s := School{room: []int{8}}
 	rooms := []int{1, 2}
-	fmt.Printf("%p\n", &s)
+	fmt.Printf("%p\n", s.room)
 	s.SetRoom1(rooms)
 	fmt.Println(rooms)
 	fmt.Println(s.GetRoom1())
