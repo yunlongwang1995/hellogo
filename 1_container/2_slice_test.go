@@ -1,4 +1,4 @@
-package examples
+package __container
 
 import (
 	"fmt"
