@@ -1,25 +1,23 @@
-// yacc hello world
-
-// part1: go code
 %{
-package main
-import "fmt"
+package hello
+
+import "hellogo/yacc/hello/sem/tree"
 %}
 
-// part2: type definition
 %union {
-    ystring string
+    type_string string
 }
 
-%type <ystring> expression
-%token <ystring> HELLO HI
-%start expression
+%type <type_string> expression
+%token <type_string> PRINT HELLO
 
 %%
+expression:        HELLO
+        {
+		st := tree.HelloStatement{
+                		Name: "自定义参数",
+                	}
 
-// part3: grammer rule
-expression : HELLO {
-    fmt.Println("this is hello")
-} | HI {
-    fmt.Println("this is hi")
-};
+                st.Exec()
+        }
+%%
