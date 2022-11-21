@@ -21,7 +21,18 @@ func Test_channel_nil(t *testing.T) {
 }
 
 func Test_channel_normal(t *testing.T) {
+	var ch = make(chan int, 2)
+	ch <- 1
+	ch <- 2
+	value, ok := <-ch
+	fmt.Println("1th time: ", ok, " ", value)
 
+	close(ch)
+	value, ok = <-ch
+	fmt.Println("2th time: ", ok, " ", value)
+
+	value, ok = <-ch
+	fmt.Println("3th time: ", ok, " ", value)
 }
 
 func Test_channel_close(t *testing.T) {
