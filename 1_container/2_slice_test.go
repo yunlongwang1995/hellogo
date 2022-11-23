@@ -132,3 +132,17 @@ func TestReturnSlice2(t *testing.T) {
 	fmt.Println(cap(s.GetRoom2()))
 	fmt.Println(cap(rooms))
 }
+
+func TestSliceCopy(t *testing.T) {
+	s1 := make([]int, 10)
+	s2 := s1
+	s1[0] = 1
+	s1 = append(s1, 11)
+	s1 = append(s1, 12)
+	s1 = append(s1, 13)
+	s1 = append(s1, 14)
+	s1 = append(s1, 15)
+
+	fmt.Println(s2[0])
+	fmt.Println(len(s2))
+}
